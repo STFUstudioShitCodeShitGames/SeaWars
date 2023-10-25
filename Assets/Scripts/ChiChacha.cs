@@ -7,12 +7,11 @@ public class ChiChacha : MonoBehaviour
     [SerializeField] private SpriteRenderer _otrisovka;
     [SerializeField] private Holduning _levi;
     [SerializeField] private Holduning _pravi;
-    [SerializeField] private Holduning _bumb;
     [SerializeField] private DraBumb _draBumb;
     [SerializeField] private float _wowBist;
     [SerializeField] private GameObject _paket;
     [SerializeField] private Rigidbody2D _bazs;
-
+    [SerializeField] private Button _bumpBut;
     [SerializeField] private TMP_Text _scoka;
     [SerializeField] private TMP_Text _ubiv;
     [SerializeField] private TMP_Text _bestUbiv;
@@ -31,7 +30,6 @@ public class ChiChacha : MonoBehaviour
         _levi.Sev += () => Vzglad(true);
         _pravi.Vozukaem += () => OnVazukaem(Vector2.right);
         _pravi.Sev += () => Vzglad(false);
-        _bumb.DrapBumb += OnDrapBumb;
 
         ograchil = GetMiraUgli(Camera.main).x - 1.8f;
         _paket.SetActive(false);
@@ -58,7 +56,7 @@ public class ChiChacha : MonoBehaviour
         return ShirVert;
     }
 
-    private void OnDrapBumb()
+    public void OnDrapBumb()
     {
         if (_scocha == 0)
             return;
@@ -92,7 +90,7 @@ public class ChiChacha : MonoBehaviour
     {
         _levi.HareDavid = daNet;
         _pravi.HareDavid = daNet;
-        _bumb.HareDavid = daNet;
+        _bumpBut.interactable = !daNet;
         
         _vozvrashalkin.Stape(daNet);
     }
