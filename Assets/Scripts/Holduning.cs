@@ -36,12 +36,14 @@ public class Holduning : MonoBehaviour
 
     public bool HareDavid { get; set; }
 
+    public event Action Sev;
     private void OnMouseDown()
     {
         if (_unichtozhitel || HareDavid)
             return;
         
         _baza.color = _sev;
+        Sev?.Invoke();
     }
 
     private void OnMouseUp()

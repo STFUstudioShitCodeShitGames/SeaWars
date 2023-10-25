@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ChiChacha : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _otrisovka;
     [SerializeField] private Holduning _levi;
     [SerializeField] private Holduning _pravi;
     [SerializeField] private Holduning _bumb;
@@ -27,7 +28,9 @@ public class ChiChacha : MonoBehaviour
     private void Awake()
     {
         _levi.Vozukaem += () => OnVazukaem(Vector2.left);
+        _levi.Sev += () => Vzglad(true);
         _pravi.Vozukaem += () => OnVazukaem(Vector2.right);
+        _pravi.Sev += () => Vzglad(false);
         _bumb.DrapBumb += OnDrapBumb;
 
         ograchil = GetMiraUgli(Camera.main).x - 1.8f;
@@ -41,6 +44,11 @@ public class ChiChacha : MonoBehaviour
         var kuda = _bazs.position + naprav * Time.deltaTime * _wowBist;
         kuda.x = Mathf.Clamp(kuda.x, -ograchil, ograchil);
         _bazs.MovePosition(kuda);
+    }
+
+    private void Vzglad(bool glurp)
+    {
+        _otrisovka.flipX = glurp;
     }
 
     public static Vector2 GetMiraUgli(Camera figamera)
